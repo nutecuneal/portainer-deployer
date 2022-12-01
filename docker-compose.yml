@@ -7,6 +7,8 @@ services:
     ports:
       - "0.0.0.0:8000:8000"
       - "0.0.0.0:9443:9443"
+    # Descomente para permitir conexão HTTP (Não recomendado)
+    # - "0.0.0.0:9000:9000" 
     volumes:
       - /hostPath/docker.sock:/var/run/docker.sock
       - /hostPath/data:/data
@@ -28,4 +30,4 @@ services:
       timeout: 1m
       retries: 3
       start_period: 0s
-    command: --sslcert /certs/live/yourdomain/fullchain.crt --sslkey /certs/live/yourdomain/privkey.key
+    command: --sslcert /certs/live/app/portainer_cert.pem --sslkey /certs/live/app/portainer_priv.key
