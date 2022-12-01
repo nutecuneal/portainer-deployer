@@ -1,0 +1,31 @@
+version: '3.7'
+
+services:
+  radius:
+    image: portainer/portainer-ce:2.16.2
+    container_name: portainer-server
+    ports:
+      - "0.0.0.0:8000:8000"
+      - "0.0.0.0:9443:9443"
+    volumes:
+      - /hostPath/docker.sock:/var/run/docker.sock
+      - /hostPath/data:/data
+      - /hostPath/letsencrypt/live/yourdomain:/certs/live/yourdomain:ro
+      - /hostPath/letsencrypt/archive/yourdomain:/certs/archive/yourdomain:ro
+    restart: "always"
+    healthcheck:
+      test:
+        [
+          "wget",
+          "--no-verbose",
+          "--tries=1",
+          "--spider",
+          "--no-check-certificate",
+          "https://localhost:9443",
+          "|| exit 1"
+        ]
+      interval: 3m
+      timeout: 1m
+      retries: 3
+      start_period: 0s
+    command: --sslcert /certs/live/yourdomain/fullchain.crt --sslkey /certs/live/yourdomain/privkey.key
