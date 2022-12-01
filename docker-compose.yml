@@ -15,19 +15,4 @@ services:
       - /hostPath/letsencrypt/live/yourdomain:/certs/live/yourdomain:ro
       - /hostPath/letsencrypt/archive/yourdomain:/certs/archive/yourdomain:ro
     restart: "always"
-    healthcheck:
-      test:
-        [
-          "wget",
-          "--no-verbose",
-          "--tries=1",
-          "--spider",
-          "--no-check-certificate",
-          "https://localhost:9443",
-          "|| exit 1"
-        ]
-      interval: 3m
-      timeout: 1m
-      retries: 3
-      start_period: 0s
     command: --sslcert /certs/live/app/portainer_cert.pem --sslkey /certs/live/app/portainer_priv.key
