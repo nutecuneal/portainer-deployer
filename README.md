@@ -11,7 +11,11 @@
       - [**Portas**](#portas)
       - [**Volumes**](#volumes)
       - [**Certificado**](#certificado)
-  - [Geração de Certificado Digital (HTTPS)](#geração-de-certificado-digital-https)
+  - [Migração/Restauração](#migraçãorestauração)
+  - [Certificado Digital (HTTPS)](#certificado-digital-https)
+    - [Geração de Certificado Digital](#geração-de-certificado-digital)
+    - [Atualização/Alteração de Certificado Digital (Container)](#atualizaçãoalteração-de-certificado-digital-container)
+  - [Contribuidores](#contribuidores)
 
 ## Sobre
 
@@ -64,7 +68,7 @@ volumes:
 
 3. **Volume_3**: altere "/hostPath/letsencrypt/live/yourdomain" para o local onde está armazenado os certificado digital ("\*nome\*.pem") e a chave privada ("\*nome\*.key"). (**Recomendado**) | [Instrução para geração de certificados.](#geração-de-certificado-digital-https). Caso não definido será gerado na inicialização do container automaticamente.
 
-4. **Volume_4**: altere "/hostPath/letsencrypt/archive/yourdomain" para o local de armazenamento de outros dados dados relacionados ao certificado. (**Opcional**)
+4. **Volume_4**: altere "/hostPath/letsencrypt/archive/yourdomain" para o local de armazenamento de outros dados dados relacionados ao certificado. (**Opcional**).
 
 #### **Certificado** 
 
@@ -82,7 +86,13 @@ command: --sslcert /certs/live/app/portainer_cert.pem --sslkey /certs/live/app/p
 
 **Obs.1**: troque "portainer_cert.pem" e "portainer_priv.key", respectivamente, pelos arquivos de certificado e de chave privada que você gerou.
 
-## Geração de Certificado Digital (HTTPS)
+## Migração/Restauração
+
+Em posse das pastas com os dados, siga o guia [Configuração de Parâmetros - docker-compose](#configuração-de-parâmetros---docker-compose) mapeando a pasta para seus respectivos volumes e as demais configurações se necessário. 
+
+## Certificado Digital (HTTPS)
+
+### Geração de Certificado Digital
 
 ```bash
 # Após instalar o OpenSSL
@@ -105,3 +115,17 @@ Valores (substitua):
 9. \$value_9: Departamento da Organização. Ex.: NUTEC.
 10. \$value_10: Nome comum - Domínio. Ex.: portainer.uneal.
 11. \$value_11: Endereço de Email. Ex.: nutec@gmail.com
+
+### Atualização/Alteração de Certificado Digital (Container)
+
+Caso seja necessário alterar ou atualização o certificados digital basta, apenas, gerar um [novo certificado](#geração-de-certificado-digital) com os mesmos nomes dos arquivos existentes e adicioná-los na pasta substituindo-os. Depois, reinicie o container.
+
+Caso opte por gerar um certificado com nome diferente é necessário seguir o guia de [Migração](#migraçãorestauração) após efetuar sua geração.
+
+## Contribuidores
+
+<p align="left">
+  <a href="https://github.com/nutecuneal/portainer-deploy/graphs/contributors">
+    <img src="https://contrib.rocks/image?repo=nutecuneal/portainer-deploy" />
+  </a>
+</p>
