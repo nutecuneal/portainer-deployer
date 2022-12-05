@@ -1,7 +1,7 @@
 version: '3.7'
 
 services:
-  radius:
+  portainer:
     image: portainer/portainer-ce:2.16.2
     container_name: portainer-server
     ports:
