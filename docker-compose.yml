@@ -1,17 +1,17 @@
-version: '3.7'
+version: '3.8'
 
 services:
   portainer:
-    image: portainer/portainer-ce:2.16.2
-    container_name: portainer-server
+    image: 'portainer/portainer-ce:2.17.0-alpine'
+    container_name: 'portainer-server'
     ports:
-    # - "0.0.0.0:8000:8000"
-      - "0.0.0.0:9443:9443"
-    # - "0.0.0.0:9000:9000"
+    # - '0.0.0.0:8000:8000'
+    # - '0.0.0.0:9443:9443'
+     - '0.0.0.0:9000:9000'
     volumes:
       - /hostPath/docker.sock:/var/run/docker.sock
       - /hostPath/data:/data
     #  - /hostPath/letsencrypt/live/yourdomain:/certs/live/app:ro
     #  - /hostPath/letsencrypt/archive/yourdomain:/certs/archive/apps:ro
-    restart: "always"
+    restart: "unless-stopped"
     #command: --sslcert /certs/live/app/portainer_cert.pem --sslkey /certs/live/app/portainer_priv.key
