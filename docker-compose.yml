@@ -11,4 +11,14 @@ services:
     volumes:
       - '/hostPath/docker.sock:/var/run/docker.sock'
       - '/hostPath/data:/data'
+    networks:
+      - portainer-net
     restart: 'unless-stopped'
+
+networks:
+  portainer-net:
+    name: 'portainer-net'
+    ipam:
+      driver: default
+      config:
+        - subnet: '172.18.0.0/28'
