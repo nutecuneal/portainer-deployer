@@ -11,7 +11,4 @@ services:
     volumes:
       - '/hostPath/docker.sock:/var/run/docker.sock'
       - '/hostPath/data:/data'
-    #  - /hostPath/letsencrypt/live/yourdomain:/certs/live/app:ro
-    #  - /hostPath/letsencrypt/archive/yourdomain:/certs/archive/apps:ro
     restart: 'unless-stopped'
-    #command: --sslcert /certs/live/app/portainer_cert.pem --sslkey /certs/live/app/portainer_priv.key
