@@ -5,8 +5,8 @@ services:
     image: 'portainer/portainer-ce:2.17.0-alpine'
     container_name: 'portainer-app'
     ports:
-    # - '0.0.0.0:8000:8000'
-    # - '0.0.0.0:9000:9000'
+      # - '0.0.0.0:8000:8000'
+      # - '0.0.0.0:9000:9000'
       - '0.0.0.0:9443:9443'
     volumes:
       - '/hostPath/docker.sock:/var/run/docker.sock'
@@ -14,6 +14,22 @@ services:
     networks:
       - portainer-net
     restart: 'unless-stopped'
+    healthcheck:
+      test:
+        [
+          'CMD',
+          'wget',
+          '--tries=1',
+          '--spide',
+          '--no-check-certificate',
+          '--no-verbose',
+          'https://localhost:9443',
+          '|| exit 1'
+        ]
+      interval: 1m30s
+      timeout: 30s
+      retries: 3
+      start_period: 10s
 
 networks:
   portainer-net:
