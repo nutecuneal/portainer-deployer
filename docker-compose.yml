@@ -5,9 +5,9 @@ services:
     image: 'portainer/portainer-ce:2.17.0-alpine'
     container_name: 'portainer-app'
     ports:
-      # - '0.0.0.0:8000:8000'
-      # - '0.0.0.0:9000:9000'
-      - '0.0.0.0:9443:9443'
+      # - '8000:8000'
+      # - '9000:9000'
+      - '9443:9443'
     volumes:
       - '/hostPath/docker.sock:/var/run/docker.sock'
       - '/hostPath/data:/data'
