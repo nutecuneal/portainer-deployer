@@ -9,8 +9,8 @@ services:
       # - '9000:9000'
       - '9443:9443'
     volumes:
-      - '/hostPath/docker.sock:/var/run/docker.sock'
-      - '/hostPath/data:/data'
+      - '$(pwd)/docker.sock:/var/run/docker.sock'
+      - '$(pdw)/var_lib_data:/data'
     networks:
       - portainer-net
     restart: 'unless-stopped'
