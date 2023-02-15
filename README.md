@@ -22,7 +22,7 @@ O [Portainer](https://www.portainer.io) é um poderoso gerenciador de containers
 
 ### Estrutura de Diretórios
 
-```yml
+```bash
 # Crie os diretórios
 
 # Dir. config/dados
