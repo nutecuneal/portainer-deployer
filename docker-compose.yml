@@ -15,17 +15,7 @@ services:
       - portainer-net
     restart: 'unless-stopped'
     healthcheck:
-      test:
-        [
-          'CMD',
-          'wget',
-          '--tries=1',
-          '--spide',
-          '--no-check-certificate',
-          '--no-verbose',
-          'https://localhost:9443',
-          '|| exit 1'
-        ]
+      test: 'wget --tries=1 --spide --no-check-certificate --no-verbose https://localhost:9443 || exit 1'
       interval: 1m30s
       timeout: 30s
       retries: 3
