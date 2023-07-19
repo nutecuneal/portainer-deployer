@@ -1,20 +1,20 @@
-version: '3.8'
+version: '3.9'
 
 services:
   app:
-    image: 'portainer/portainer-ce:2.18.2-alpine'
-    container_name: 'portainer-app'
+    image: portainer/portainer-ce:2.18.4-alpine
+    container_name: portainer-app
     ports:
-      # - '8000:8000'
-      # - '9000:9000'
-      - '9443:9443'
+      # - '8000'
+      # - '9000'
+      - '9443'
     volumes:
       - '$(pwd)/docker.sock:/var/run/docker.sock'
       - '$(pwd)/var_lib_data:/data'
     networks:
       - portainer-net
     userns_mode: host
-    restart: 'unless-stopped'
+    restart: unless-stopped
     healthcheck:
       test: 'wget --tries=1 --spide --no-check-certificate --no-verbose https://localhost:9443 || exit 1'
       interval: 1m30s
@@ -24,8 +24,8 @@ services:
 
 networks:
   portainer-net:
-    name: 'portainer-net'
+    name: portainer-net
     ipam:
       driver: default
       config:
-        - subnet: '172.18.0.0/28'
+        - subnet: 172.18.0.0/28
