@@ -3,6 +3,7 @@ version: '3.9'
 services:
   app:
     image: portainer/agent:2.18.4-alpine
+    container_name: portainer-edge-agent
     volumes:
       - $(pwd)/docker.sock:/var/run/docker.sock
       - $(pwd)/root:/host
@@ -10,11 +11,11 @@ services:
       - $(pwd)/lib_data:/data
     environment:
       - EDGE_INSECURE_POLL=1
+      - EDGE_ID=
+      - EDGE=
+      - EDGE_KEY=
     networks:
       - agent-net
-
-    deploy:
-      mode: global
 
 networks:
   agent-net:
