@@ -1,0 +1,31 @@
+version: '3.9'
+
+services:
+  app:
+    image: nutec/edge-agent:v1.0
+    volumes:
+      - $(pwd)/docker.sock:/var/run/docker.sock
+      - $(pwd)/root:/host
+      - $(pwd)/docker_volumes:/var/lib/docker/volumes
+      - $(pwd)/lib_data:/data
+    environment:
+      - EDGE_INSECURE_POLL=1
+      - EDGE=
+      - EDGE_ID=
+      - EDGE_KEY=
+    networks:
+      - portainer-agent-net
+    deploy:
+      mode: global
+      resources:
+        limits:
+          cpu: '0.20'
+          memory: 256M
+
+networks:
+  portainer-agent-net:
+    name: portainer-agent-net
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.18.0.0/28
