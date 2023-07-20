@@ -1,0 +1,25 @@
+version: '3.9'
+
+services:
+  app:
+    image: portainer/agent:2.18.4-alpine
+    volumes:
+      - $(pwd)/docker.sock:/var/run/docker.sock
+      - $(pwd)/root:/host
+      - $(pwd)/docker_volumes:/var/lib/docker/volumes
+      - $(pwd)/lib_data:/data
+    environment:
+      - EDGE_INSECURE_POLL=1
+    networks:
+      - agent-net
+
+    deploy:
+      mode: global
+
+networks:
+  agent-net:
+    name: portainer-agent-net
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.18.0.0/28
