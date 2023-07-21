@@ -20,7 +20,7 @@ services:
       mode: global
       resources:
         limits:
-          cpu: '0.20'
+          cpus: '0.20'
           memory: 256M
 
 networks:
