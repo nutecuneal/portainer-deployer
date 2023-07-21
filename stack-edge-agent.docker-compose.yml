@@ -13,6 +13,7 @@ services:
       - EDGE=
       - EDGE_ID=
       - EDGE_KEY=
+      - AGENT_CLUSTER_ADDR=task.app
     networks:
       - portainer-agent-net
     deploy:
