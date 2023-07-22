@@ -10,7 +10,7 @@ services:
       - $(pwd)/lib_data:/data
     environment:
       - EDGE_INSECURE_POLL=1
-      - EDGE=
+      - EDGE=1
       - EDGE_ID=
       - EDGE_KEY=
       - AGENT_CLUSTER_ADDR=task.app
