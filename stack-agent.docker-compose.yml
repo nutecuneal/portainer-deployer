@@ -3,26 +3,24 @@ version: '3.9'
 services:
   app:
     image: portainer/agent:2.18.4-alpine
-    container_name: portainer-edge-agent
+    ports:
+      - '9001:9001'
     volumes:
       - $(pwd)/docker.sock:/var/run/docker.sock
-      - $(pwd)/root:/host
       - $(pwd)/docker_volumes:/var/lib/docker/volumes
-      - $(pwd)/lib_data:/data
-    environment:
-      - EDGE_INSECURE_POLL=1
-      - EDGE=1
-      - EDGE_ID=
-      - EDGE_KEY=
     networks:
       - portainer-agent-net
-    restart: unless-stopped
-    userns_mode: host
+    deploy:
+      mode: global
+      resources:
+        limits:
+          cpus: '0.25'
+          memory: 256M
 
 networks:
   portainer-agent-net:
     name: portainer-agent-net
     ipam:
-      driver: default
+      driver: overlay
       config:
-        - subnet: 172.18.0.0/28
+        - subnet: 10.0.1.0/28

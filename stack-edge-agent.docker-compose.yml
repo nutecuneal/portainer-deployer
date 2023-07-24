@@ -5,8 +5,8 @@ services:
     image: portainer/agent:2.18.4-alpine
     volumes:
       - $(pwd)/docker.sock:/var/run/docker.sock
-      - /:/host
       - $(pwd)/docker_volumes:/var/lib/docker/volumes
+      - /:/host
       - $(pwd)/lib_data:/data
     environment:
       - EDGE_INSECURE_POLL=1
@@ -27,6 +27,6 @@ networks:
   portainer-agent-net:
     name: portainer-agent-net
     ipam:
-      driver: default
+      driver: overlay
       config:
-        - subnet: 172.18.0.0/28
+        - subnet: 10.0.1.0/28
