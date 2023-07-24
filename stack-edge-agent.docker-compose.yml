@@ -2,10 +2,10 @@ version: '3.9'
 
 services:
   app:
-    image: nutec/edge-agent:v1.0
+    image: portainer/agent:2.18.4-alpine
     volumes:
       - $(pwd)/docker.sock:/var/run/docker.sock
-      - $(pwd)/root:/host
+      - /:/host
       - $(pwd)/docker_volumes:/var/lib/docker/volumes
       - $(pwd)/lib_data:/data
     environment:
@@ -13,14 +13,14 @@ services:
       - EDGE=1
       - EDGE_ID=
       - EDGE_KEY=
-      - AGENT_CLUSTER_ADDR=task.app
+      - AGENT_CLUSTER_ADDR=tasks.portainer-stack_app
     networks:
       - portainer-agent-net
     deploy:
       mode: global
       resources:
         limits:
-          cpus: '0.20'
+          cpus: '0.25'
           memory: 256M
 
 networks:
