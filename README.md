@@ -123,10 +123,12 @@ config:
 
 ## 4. Portainer (Manager)
 
+Os arquivos de *build* do Portainer são apresentado de duas formas mutuamente excludentes: (1) método comum através do arquivo [*docker-compose.yml*](./docker-compose.yml); (2) stack, para uso em modo Swarm, arquivo [*stack-portainer-ce.docker-compose.yml*](./stack-portainer-ce.docker-compose.yml).
+
 ### 4.1. Portas
 
 ```yml
-# docker-compose.yml 
+# (docker-compose|stack-portainer-ce.docker-compose).yml 
 
 # Em services.app
 # Descomente (e/ou altere) as portas/serviços que você deseja oferecer.
@@ -143,7 +145,7 @@ ports:
 ### 4.2. Volumes
 
 ```yml
-# docker-compose.yml 
+# (docker-compose|stack-portainer-ce.docker-compose).yml 
 
 # Em "services.app".
 # Aponte para os locais corretos.
@@ -158,9 +160,9 @@ volumes:
 ### 4.3. Rede
 
 ```yml
-# docker-compose.yml
+# (docker-compose|stack-portainer-ce.docker-compose).yml
 
-#Em networks.portainer-net.ipam
+# Em networks.portainer-net.ipam
 # Altere o valores caso necessário. 
 
 config:
