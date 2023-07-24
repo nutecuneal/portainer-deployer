@@ -11,16 +11,16 @@ services:
       - $(pwd)/lib_data:/data
     environment:
       - EDGE_INSECURE_POLL=1
-      - EDGE=
+      - EDGE=1
       - EDGE_ID=
       - EDGE_KEY=
     networks:
-      - agent-net
+      - portainer-agent-net
     restart: unless-stopped
     userns_mode: host
 
 networks:
-  agent-net:
+  portainer-agent-net:
     name: portainer-agent-net
     ipam:
       driver: default
