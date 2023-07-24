@@ -13,14 +13,14 @@ services:
       - EDGE=1
       - EDGE_ID=
       - EDGE_KEY=
-      - AGENT_CLUSTER_ADDR=tasks.portainer-stack_app
+      - AGENT_CLUSTER_ADDR=tasks.portainer-agent-stack_app
     networks:
       - portainer-agent-net
     deploy:
       mode: global
       resources:
         limits:
-          cpus: '0.25'
+          cpus: '0.5'
           memory: 256M
 
 networks:
