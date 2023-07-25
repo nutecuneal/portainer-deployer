@@ -27,6 +27,7 @@ networks:
   portainer-agent-net:
     name: portainer-agent-net
     ipam:
-      driver: overlay
+      driver: default
       config:
-        - subnet: 10.0.1.0/28
+        - subnet: 172.18.0.0/28
+
